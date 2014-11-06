@@ -1,6 +1,10 @@
 class GamesController < ApplicationController
   helpers HangmanHelper
 
+  get '/' do
+    "Game options here"
+  end
+
   get '/hangman' do
     erb :'hangman/index'
   end

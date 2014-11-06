@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105231554) do
+ActiveRecord::Schema.define(version: 20141106002632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "hangmangames", force: true do |t|
+    t.integer  "user_id"
+    t.string   "word"
+    t.string   "game_state"
+    t.integer  "badguess_count", default: 0
+    t.string   "bad_guesses"
+    t.string   "good_guesses"
+    t.string   "last_guess"
+    t.boolean  "victory",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username",      null: false

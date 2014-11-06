@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require
 
 require './models/user'
+require './models/hangmangame'
 
 require './helpers/authentication_helper'
 require './helpers/hangman_helper'

@@ -2,19 +2,23 @@ class GamesController < ApplicationController
   helpers HangmanHelper
 
   get '/' do
-    "Game options here"
+    erb :'games/index'
   end
 
   get '/hangman' do
+    @game = Hangmangame.where(user_id: current_user).find_by(victory: false)
     erb :'hangman/index'
   end
 
-  get '/hangman/newgame' do
-    random_word = elementary_word
-    #create blanks for each letter of word
-    initial_game_state = underscore_display(random_word)
-
-
+  post '/hangman/newgame' do
+    if Hangmangame.where(user_id: current_user).find_by(victory: false) == nil
+      random_word = elementary_word
+      initial_game_state = underscore_display(random_word)
+      Hangmangame.create(user_id: current_user.id, word: random_word, game_state: initial_game_state)
+      redirect '/games/hangman'
+    else
+      redirect '/games/hangman'
+    end
   end
 
 end

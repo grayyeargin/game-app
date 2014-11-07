@@ -1,7 +1,83 @@
 body {
 	background-color: grey;
+	background: url('http://images2.layoutsparks.com/1/224466/a-happy-place-sunrise.jpg');
+	background-repeat: no-repeat;
+	  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	color: #3D3D3D;
+	font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,sans-serif
+
+}
+
+/*navigation styles*/
+nav{
+	width: 100%;
+	background-color: #e67e22;
+}
+
+nav ul{
+	margin: 0;
+}
+
+nav a{
 	color: white;
-	font-family: Rockwell,"Courier Bold",Courier,Georgia,Times,"Times New Roman",serif;
+}
+
+nav a:hover{
+	color: #3498db;
+}
+
+.nav_container{
+	max-width: 960px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+nav li{
+	font-weight: bolder;
+	text-align: center;
+	display: inline-block;
+	margin: 3em 2em;
+}
+
+/*Body content Container*/
+.content_container{
+	max-width: 960px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+/*Form Styling*/
+.form_container{
+	width: 400px;
+	border-radius: 10px;
+	border: 2px solid #3D3D3D;
+	background: url('http://www.webtexture.net/wp-content/uploads/2011/05/20-seamless-paper-texture-200x200.jpg');
+	padding: 20px;
+	margin: 2em auto;
+	vertical-align: middle;
+}
+
+.form_container h1, .form_container input {
+	margin: 5px 10px;
+}
+
+.form_container a{
+	display: block;
+	text-align: center;
+
+}
+
+.form_container input{
+	width: 200px;
+}
+
+.form_container input[type="submit"]{
+	width: auto;
+	display: block;
 }
 
 .hangmanpage {

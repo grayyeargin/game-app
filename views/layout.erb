@@ -4,10 +4,29 @@
 	<meta charset="UTF-8">
 	<title>Games 4 Little People</title>
 	<link rel="stylesheet" href="/stylesheets/styles.css">
+	<link rel="stylesheet" href="/stylesheets/normalize.css">
 	<script src="/javascripts/jquery.js"></script>
 	<script src="/javascripts/scripts.js"></script>
 </head>
 <body>
-	<%= yield %>
+
+	<%if current_user %>
+		<nav>
+			<div class="nav_container">
+				<ul>
+					<a href="/games"><li>HOME</li></a>
+					<a href="/games"><li>GAMES</li></a>
+					<a href="/"><li>HIGH SCORES</li></a>
+					<a href="/users/:id"><li>PROFILE</li></a>
+				</ul>
+			</div>
+		</nav>
+	<% end %>
+
+
+	<div class="content_container">
+		<%= yield %>
+	</div>
+
 </body>
 </html>

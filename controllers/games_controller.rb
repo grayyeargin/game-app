@@ -7,13 +7,13 @@ class GamesController < ApplicationController
 
   #the current hangman game
   get '/hangman' do
-    @game = Hangmangame.where(user_id: current_user).find_by(victory: false)
+    @game = Hangmangame.where(user_id: current_user).find_by(victory: nil)
     erb :'hangman/index'
   end
 
   #Either making new hangman game or taking to unifinished game
   post '/hangman/newgame' do
-    if Hangmangame.where(user_id: current_user).find_by(victory: false) == nil
+    if Hangmangame.where(user_id: current_user).find_by(victory: nil) == nil
       random_word = elementary_word
       initial_game_state = underscore_display(random_word)
       Hangmangame.create(user_id: current_user.id, word: random_word, game_state: initial_game_state)

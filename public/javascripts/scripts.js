@@ -24,7 +24,13 @@ function hangmanLetterGuess(){
 
 
 
-
+function finishedHangman(victory_data){
+	if (victory_data){
+			alert('YOU WON!!!!!!');
+	} else if (victory_data === false){
+			alert('YOU LOST!!!!!');
+	}
+}
 
 
 function alreadyGuessedValidation(guessed_letter){
@@ -49,6 +55,7 @@ function guessedLetterPatch(){
 				$('#bad_guesses').text(updated_data.bad_guesses);
 				$('#good_guesses').text(updated_data.good_guesses);
 				$('#guess_count').text(updated_data.badguess_count);
+				finishedHangman(updated_data.victory);
 			}
 		})
 }

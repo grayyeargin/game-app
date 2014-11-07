@@ -8,7 +8,8 @@ class CreateHangmangameTable < ActiveRecord::Migration
       t.string :bad_guesses, default: ""
       t.string :good_guesses, default: ""
       t.string :last_guess
-      t.boolean :victory, default: false
+      t.boolean :victory, default: nil
+      t.integer :score, default: 0
       t.timestamps
     end
   end

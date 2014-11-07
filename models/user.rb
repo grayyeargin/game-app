@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   include BCrypt
   has_many :hangman
 
+  validates :username, uniqueness: true
+
   def password
     @password ||= Password.new(self.password_hash)
   end

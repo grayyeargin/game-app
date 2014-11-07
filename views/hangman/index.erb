@@ -1,1 +1,26 @@
-<h1>Play some hangman</h1>
+<div class="hangmanpage">
+	<h1>Play some hangman</h1>
+	<h1 id="hangman_word"><%= @game.game_state %></h1>
+	
+	<div class="hangman_info">
+		<h3>Wrong Guess</h3>
+		<h5 id="bad_guesses"><%= @game.bad_guesses.split("").join(" ") %></h5>
+	</div>
+
+	<div class="hangman_info">
+		<h3>Good Guesses</h3>
+		<h5 id="good_guesses" ><%= @game.good_guesses.split("").join(" ") %></h5>
+	</div>
+
+	<div class="hangman_info">
+		<h3>Guess Count</h3>
+		<h5 id="guess_count" ><%= @game.badguess_count %></h5>
+	</div>
+
+	<div class="hidden"><%= @game.id %></div>
+
+
+
+
+
+</div>

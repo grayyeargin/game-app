@@ -95,3 +95,8 @@ nav li{
 	width: 200px;
 	float: left;
 }
+
+/*Tic Tac Toe Styles*/
+#tictac_board{
+	border: 1px solid black;
+}

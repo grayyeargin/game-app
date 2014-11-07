@@ -1,11 +1,15 @@
 class GamesController < ApplicationController
   helpers HangmanHelper
 
+
   get '/' do
     erb :'games/index'
   end
 
-  #the current hangman game
+
+
+
+# **** HANGMAN ROUTES!!! ****
   get '/hangman' do
     @game = Hangmangame.where(user_id: current_user).find_by(victory: nil)
     erb :'hangman/index'
@@ -40,8 +44,18 @@ class GamesController < ApplicationController
       last_guess: updated_game.last_guess,
       victory: updated_game.victory
     }.to_json
-
   end
+
+
+
+
+
+# **** TIC TAC TOE ROUTES!!! ****
+  get '/tictactoe' do
+    erb :'tictactoe/index'
+  end
+
+
 
 
 end

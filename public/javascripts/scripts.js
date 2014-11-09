@@ -1,13 +1,6 @@
 console.log(":-)")
 
 
-var $canvas;
-var context;
-var numRows = 3;
-var numColumns = 3;
-var blockSize = 70;
-
-
 
 //document ready
 $(function(){
@@ -18,8 +11,10 @@ $(function(){
 	$canvas = $('#tictac_board');
 	context = $canvas[0].getContext('2d');
 
-	createCells();
+
 	createBoard();
+	boardState = createCells();
+	$canvas.on('click', makeMove);
 
 
 
@@ -32,6 +27,8 @@ var context;
 var numRows = 3;
 var numColumns = 3;
 var blockSize = 70;
+var boardState;
+var count = 0;
 
 
 function createBoard(){
@@ -42,7 +39,7 @@ function createBoard(){
 		for (var col=0; col < numColumns; col++) {
 			var x = col * blockSize;
 			var y = row * blockSize;
-			context.strokeRect(x, y, blockSize, blockSize)
+			context.strokeRect(x, y, blockSize, blockSize);
 		}
 	}
 }
@@ -56,6 +53,75 @@ function createCells() {
 }
 
 
+
+function makeMove(e) {
+	var x = e.offsetX;
+	var y = e.offsetY;
+	var col = Math.floor(x/blockSize);
+	var row = Math.floor(y/blockSize);
+	winner = null
+
+	validateMove(col, row);
+
+	var winningCombinations = [boardState[2][0] != null && boardState[2][0] === boardState[2][1] && boardState[2][1] === boardState[2][2], boardState[1][0] != null && boardState[1][0] === boardState[1][1] && boardState[1][1] === boardState[1][2], boardState[0][0] != null && boardState[0][0] === boardState[0][1] && boardState[0][1] === boardState[0][2], boardState[1][0] != null && boardState[1][0] === boardState[2][0] && boardState[2][0] === boardState[0][0], boardState[0][1] != null && boardState[0][1] === boardState[1][1] && boardState[1][1] === boardState[2][1], boardState[0][2] != null && boardState[0][2] === boardState[1][2] && boardState[1][2] === boardState[2][2], boardState[0][0] != null && boardState[0][0] === boardState[1][1] && boardState[1][1] === boardState[2][2], boardState[2][0] != null && boardState[2][0] === boardState[1][1] && boardState[1][1] === boardState[0][2]];
+	gameWinner(winningCombinations);
+
+	// $.ajax({
+	// 	url: '/games/api/tictactoe',
+	// 	method: 'PATCH',
+	// 	dataType: 'JSON',
+	// 	data: {count: count, winner: winner},
+	// 	success: function(updated_data){
+	// 		$('#current_move').text(updated_data.)
+
+	// 	}
+	// })
+
+}
+
+function validateMove(col, row){
+	if (boardState[row][col]) {
+		alert('"seats taken" - Some smartass kid in Forrest Gump');
+	} else {
+		if (count%2 == 0) {
+			boardState[row][col] = "X";
+			displayMove("X", col, row);
+			count++;
+		} else {
+			boardState[row][col] = "O";
+			displayMove("O", col, row);
+			count++;
+		}
+	}
+	boardState;
+}
+
+function displayMove(move, col, row){
+	context.translate(0, 0);
+	context.font = "32pt Arial";
+	context.textAlign = "center";
+	context.textBaseline = "middle";
+	context.strokeStyle = "orange";
+	context.strokeText(move, col*70+35, row*70+35);
+}
+
+function gameWinner(winningCombinations){
+	winningCombinations.forEach(function(value){
+		if (value) {
+			if (count%2 == 0) {
+				alert("O WINS!!!!");
+				winner = "O";
+			} else {
+				alert("X WINS!!!!");
+				winner = "X";
+			}
+		}
+	});
+		if (winner == null && count === 9) {
+			alert("its a draw...");
+			winner = "Draw"
+		}
+}
 
 
 

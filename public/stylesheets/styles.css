@@ -11,6 +11,10 @@ body {
 
 }
 
+.hidden {
+	visibility: hidden;
+}
+
 /*navigation styles*/
 nav{
 	width: 100%;
@@ -48,6 +52,7 @@ nav li{
 	max-width: 960px;
 	width: 90%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 /*Form Styling*/
@@ -80,23 +85,42 @@ nav li{
 	display: block;
 }
 
-.hangmanpage {
+/*.hangmanpage {
 	height: 100%;
 	width: 100%;
-}
+}*/
 
 #hangman_word {
 	letter-spacing: 1em;
 	font-size: 50px;
 }
 
+.info_container {
+	width: 100%;
+	text-align: center;
+}
+
 .hangman_info {
 	height: 100px;
 	width: 200px;
-	float: left;
+	display: inline-block;
+	border: 1px solid black;
+	vertical-align: bottom;
+	margin: 30px;
+	background: url('http://www.webtexture.net/wp-content/uploads/2011/05/20-seamless-paper-texture-200x200.jpg');
+
 }
 
 /*Tic Tac Toe Styles*/
+
+.board_container {
+		display: inline-block;
+		padding: 50px;
+		border-radius: 10px;
+		border: 5px solid white;
+		background: url('http://www.webtexture.net/wp-content/uploads/2011/05/20-seamless-paper-texture-200x200.jpg');
+
+}
 #tictac_board{
-	border: 1px solid black;
+	
 }

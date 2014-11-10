@@ -52,8 +52,32 @@ class GamesController < ApplicationController
 
 # **** TIC TAC TOE ROUTES!!! ****
   get '/tictactoe' do
+    @game = TicTacToeGame.where(user_id: current_user).find_by(winner: nil)
     erb :'tictactoe/index'
   end
+
+  post '/tictactoe/newgame' do
+    if TicTacToeGame.where(user_id: current_user).find_by(winner: nil) == nil
+      TicTacToeGame.create(user_id: current_user.id)
+      redirect '/games/tictactoe'
+    else
+      redirect '/games/tictactoe'
+    end
+  end
+
+  patch '/api/tictactoe' do
+    content_type :json
+    current_game = TicTacToeGame.find_by(id: params[:id])
+    current_game.update(current_move: params[:currentMove], winner: params[:winner])
+    updated_game = TicTacToeGame.find_by(id: params[:id])
+
+    {
+      current_move: updated_game.current_move,
+      winner: updated_game.winner
+    }.to_json
+  end
+
+
 
 
 

@@ -1,9 +1,9 @@
 class CreateTictactoeTable < ActiveRecord::Migration
   def change
-    create_table :tictactoegames do |t|
+    create_table :tic_tac_toe_games do |t|
       t.references :user
-      t.integer :count, default: 0
-      t.string :winner, default: :null
+      t.string :current_move
+      t.string :winner
     end
   end
 end

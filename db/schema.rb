@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20141109012753) do
     t.datetime "updated_at"
   end
 
-  create_table "tictactoegames", force: true do |t|
+  create_table "tic_tac_toe_games", force: true do |t|
     t.integer "user_id"
-    t.integer "count",   default: 0
-    t.string  "winner",  default: "null"
+    t.string  "current_move"
+    t.string  "winner"
   end
 
   create_table "users", force: true do |t|

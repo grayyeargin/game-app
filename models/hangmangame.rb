@@ -11,7 +11,7 @@ class Hangmangame < ActiveRecord::Base
       self.update(game_state: self.game_state, good_guesses: good_guesses+letter, last_guess: letter, victory: victory)
     #If bad guess, add letter to bad guesses and increase badguess_count
     else
-      if badguess_count == 5 then victory = false end
+      if badguess_count >= 5 then victory = false end
       self.update(bad_guesses: bad_guesses+letter, badguess_count: badguess_count+1, last_guess: letter, victory: victory)
     end
   end

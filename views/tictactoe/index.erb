@@ -1,5 +1,34 @@
-<h1>Tic Tac Toe</h1>
-<div class="board_container">
-	<canvas id="tictac_board" width="300" height="300"></canvas>
+
+<div class="play_tictactoe">
+	<h1><span class="large_header">Tic Tac Toe</span></h1>
+	<div class="board_container">
+		<canvas id="tictac_board" width="300" height="300"></canvas>
+	</div>
+	<div class="hidden"><%= @game.id %></div>
 </div>
-<div class="hidden"><%= @game.id %></div>
+
+<!-- Finished Game JQuery alerts -->
+	<div class="finishedgame" id="x_winner" style="display:none;">
+		<h1><span class="large_header">"X" won the game</span></h1>
+		<button class="btn"><a href="/games">More Games</a></button>
+		<button class="btn" href="/games/tictactoe/newgame"><a href="/games">Play Again</a></button>
+	</div>
+
+	<div class="finishedgame" id="o_winner" style="display:none;">
+		<h1><span class="large_header">"O" won the game</span></h1>
+		<button class="btn"><a href="/games">More Games</a></button>
+		<button class="btn" href="/games/tictactoe/newgame"><a href="/games">Play Again</a></button>
+	</div>
+
+	<div class="finishedgame" id="tictac_draw" style="display:none;">
+		<h1><span class="large_header">The Game was a DRAW!</span></h1>
+		<button class="btn"><a href="/games">More Games</a></button>
+		<button class="btn" href="/games/tictactoe/newgame"><a href="/games">Play Again</a></button>
+	</div>
+
+
+
+<!-- 	dialog boxes -->
+	<div id="previous_move" title="Terrible Tic-Tac-Toe Infraction" style="display:none;">Seats Taken...
+		<img class="dialog_img" src="/images/confused.png" alt="Cant sit here...">
+	</div>

@@ -1,14 +1,17 @@
 body {
-	background-color: grey;
-	background: url('http://images2.layoutsparks.com/1/224466/a-happy-place-sunrise.jpg');
-	background-repeat: no-repeat;
-	  -webkit-background-size: cover;
+	background: url('/images/tree_background.jpg') no-repeat center center fixed;	  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+	background-color: grey;
 	color: #3D3D3D;
 	font-family: "Avant Garde",Avantgarde,"Century Gothic",CenturyGothic,AppleGothic,sans-serif
 
+}
+
+.large_header {
+	font-family: 'Cabin Sketch', cursive;
+	font-size: 76px;
 }
 
 .hidden {
@@ -18,7 +21,6 @@ body {
 /*navigation styles*/
 nav{
 	width: 100%;
-	background-color: #e67e22;
 }
 
 nav ul{
@@ -85,10 +87,49 @@ nav li{
 	display: block;
 }
 
-/*.hangmanpage {
-	height: 100%;
-	width: 100%;
-}*/
+.button_form{
+	display: inline-block;
+	margin: 50px;
+}
+
+.button_image{
+	height: 300px;
+	width: 300px;
+	border-radius: 20px;
+	position: relative;
+	text-align: center;
+}
+
+button span{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	font-size: 28px;
+	color: #DB0000;
+	text-shadow: 0px 0px 15px rgba(0, 255, 0, 1);
+	font-weight: bolder;
+}
+
+#tictactoe_image{
+	background: url('/images/tictactoe.png');
+	background-size: cover;
+}
+
+#hangman_image{
+	background: url('/images/hangman.png');
+	background-size: cover;
+}
+
+.hangman_word_container {
+		display: inline-block;
+		padding: 10px 0px 10px 50px;
+		padding-right: 0px;
+		border-radius: 10px;
+		border: 5px solid white;
+		background: url('http://www.webtexture.net/wp-content/uploads/2011/05/20-seamless-paper-texture-200x200.jpg');
+
+}
 
 #hangman_word {
 	letter-spacing: 1em;
@@ -111,16 +152,83 @@ nav li{
 
 }
 
+
+.ui-widget-header,.ui-state-default, ui-button{
+  background:#b9cd6d;
+  border: 1px solid #b9cd6d;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.dialog_img {
+	height: 200px;
+	width: 200px;
+	margin: 20px 30px;
+}
+
+.finishedgame {
+	margin: 50px;
+}
+
+
 /*Tic Tac Toe Styles*/
 
 .board_container {
 		display: inline-block;
-		padding: 50px;
+		padding: 75px;
+		margin: 25px;
 		border-radius: 10px;
 		border: 5px solid white;
 		background: url('http://www.webtexture.net/wp-content/uploads/2011/05/20-seamless-paper-texture-200x200.jpg');
 
 }
-#tictac_board{
-	
+
+
+
+
+/*General*/
+
+.welcome{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 16px;
+}
+
+.unstyled_button{
+	background: none;
+  border: none;
+  margin: 0;
+  color: orange;
+}
+
+.btn {
+  background: #61c0ff;
+  background-image: -webkit-linear-gradient(top, #61c0ff, #03568a);
+  background-image: -moz-linear-gradient(top, #61c0ff, #03568a);
+  background-image: -ms-linear-gradient(top, #61c0ff, #03568a);
+  background-image: -o-linear-gradient(top, #61c0ff, #03568a);
+  background-image: linear-gradient(to bottom, #61c0ff, #03568a);
+  -webkit-border-radius: 6;
+  -moz-border-radius: 6;
+  border-radius: 6px;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #256f9c;
+  background-image: -webkit-linear-gradient(top, #256f9c, #66c2ff);
+  background-image: -moz-linear-gradient(top, #256f9c, #66c2ff);
+  background-image: -ms-linear-gradient(top, #256f9c, #66c2ff);
+  background-image: -o-linear-gradient(top, #256f9c, #66c2ff);
+  background-image: linear-gradient(to bottom, #256f9c, #66c2ff);
+  text-decoration: none;
+}
+
+.btn a{
+	text-decoration: none;
+	color: #ffffff;
+	font-family: Verdana, Arial;
 }

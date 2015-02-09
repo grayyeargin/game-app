@@ -1,12 +1,13 @@
 console.log(":-)")
 
 
-
 //document ready
 $(function(){
 	if (document.location.pathname == "/games/hangman") {
+		
 		hangmanLetterGuess();
 	}
+
 
 	$canvas = $('#tictac_board');
 	context = $canvas[0].getContext('2d');
@@ -43,7 +44,7 @@ function createBoard(){
 			var y = row * blockSize;
 
 			var gradient=context.createLinearGradient(0,0,300,300);
-			gradient.addColorStop("1.0","yellow");
+			gradient.addColorStop("1.0","red");
 			gradient.addColorStop("0.5","blue");
 			gradient.addColorStop("0","green");
 
@@ -72,7 +73,6 @@ function makeMove(e) {
 	var col = Math.floor(x/blockSize);
 	var row = Math.floor(y/blockSize);
 	var game_id = $('.hidden').text();
-	debugger;
 
 	if (winner == "Draw" || winner == "X" || winner == "O") {
 		alert("Games over bro");
@@ -98,7 +98,12 @@ function makeMove(e) {
 
 function validateMove(col, row){
 	if (boardState[row][col]) {
-		alert('"seats taken" - Some smartass kid in Forrest Gump');
+		$( "#previous_move" ).dialog({
+               autoOpen: true, 
+               hide: "puff",
+               show : "slide",
+               height: 400     
+          		});
 	} else {
 		if (currentMove == null || currentMove == "X") {
 			boardState[row][col] = "X";
@@ -125,7 +130,7 @@ function displayMove(move, col, row){
 	gradient.addColorStop("0","magenta");
 	gradient.addColorStop("0.2","blue");
 	gradient.addColorStop("0.4","green");
-	gradient.addColorStop("0.6","yellow");
+	gradient.addColorStop("0.6","#DEDE00");
 	gradient.addColorStop("0.8","orange");
 	gradient.addColorStop("1.0","red");
 
@@ -135,18 +140,24 @@ function displayMove(move, col, row){
 
 function gameWinner(winningCombinations){
 	winningCombinations.forEach(function(value){
-		if (value) {
+		if (value && winner === "") {
 			if (currentMove === "X") {
-				alert("O WINS!!!!");
+				$(".play_tictactoe").hide('explode', function(){
+					$("#o_winner").slideDown('slow')
+				});
 				winner = "O";
 			} else {
-				alert("X WINS!!!!");
+				$(".play_tictactoe").hide('explode', function(){
+					$("#x_winner").slideDown('slow')
+				});
 				winner = "X";
 			}
 		}
 	});
-		if (count === 9) {
-			alert("its a draw...");
+		if (count === 9 && winner === "") {
+			$(".play_tictactoe").hide('explode', function(){
+					$("#tictac_draw").slideDown('slow')
+				});
 			winner = "Draw"
 		}
 }
@@ -161,6 +172,10 @@ function gameWinner(winningCombinations){
 
 
 //Hangman Script
+var badguess_count;
+var hangman_status;
+var hangman_word;
+
 function hangmanLetterGuess(){
 	$(document).keypress(function(e) {
 		var keycode = e.keyCode || e.which;
@@ -172,16 +187,42 @@ function hangmanLetterGuess(){
 
 function finishedHangman(victory_data){
 	if (victory_data){
-			alert('YOU WON!!!!!!');
+			// alert('YOU WON!!!!!!');
+			$(".play_hangman").hide('explode', function(){
+					$("#hangman_winner").slideDown('slow')
+				});
+
 	} else if (victory_data === false){
-			alert('YOU LOST!!!!!');
+			// alert('YOU LOST!!!!!');
+			$(".play_hangman").hide('explode', function(){
+					$("#hangman_loser").slideDown('slow')
+				});
 	}
 }
 
 function alreadyGuessedValidation(guessed_letter){
 	var guesses = $('#bad_guesses').text() + $('#good_guesses').text()
-		if (guesses.indexOf(guessed_letter) >= 0){
-			alert("this letter already guessed!");
+		if (badguess_count >= 6 || hangman_status != null){
+			// alert("This game is Over");
+
+			$( "#hangman_game_over" ).dialog({
+               autoOpen: false, 
+               hide: "puff",
+               show : "slide",
+               height: 200      
+          		});
+
+		} else if (guesses.indexOf(guessed_letter) >= 0){
+			// alert("this letter already guessed!");
+			$( "#already_guessed_dialog" ).dialog({
+               autoOpen: true, 
+               hide: "puff",
+               show : "slide",
+               height: 400     
+          		});
+
+
+
 		} else {
 			guessedLetterPatch();
 		}
@@ -198,9 +239,11 @@ function guessedLetterPatch(){
 				$('#hangman_word').text(updated_data.game_state);
 				console.log(updated_data.game_state);
 				$('#bad_guesses').text(updated_data.bad_guesses);
+				badguess_count = updated_data.badguess_count;
 				$('#good_guesses').text(updated_data.good_guesses);
 				$('#guess_count').text(updated_data.badguess_count);
 				finishedHangman(updated_data.victory);
+				hangman_status = updated_data.victory;
 			}
 		})
 }

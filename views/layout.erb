@@ -3,9 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Games 4 Little People</title>
-	<link rel="stylesheet" href="/stylesheets/styles.css">
 	<link rel="stylesheet" href="/stylesheets/normalize.css">
+	<link rel="stylesheet" href="/stylesheets/styles.css">
+	<link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+	<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
 	<script src="/javascripts/jquery.js"></script>
+	<script src="/javascripts/jquery-ui.min.js"></script>
 	<script src="/javascripts/scripts.js"></script>
 </head>
 <body>
@@ -14,11 +17,17 @@
 		<nav>
 			<div class="nav_container">
 				<ul>
-					<a href="/games"><li>HOME</li></a>
 					<a href="/games"><li>GAMES</li></a>
 					<a href="/"><li>HIGH SCORES</li></a>
-					<a href="/users/:id"><li>PROFILE</li></a>
+					<a href="/"><li>PROFILE</li></a>
 				</ul>
+			</div>
+			<div class="welcome">
+				Hi, <%= @current_user.username %></span></br>
+				<form action="/sessions" method="post">
+					<input type="hidden" name="_method" value="delete">
+					<input class="unstyled_button" type="submit" value="Logout">
+				</form>
 			</div>
 		</nav>
 	<% end %>

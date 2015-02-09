@@ -19,4 +19,5 @@ end
 
 map('/users'){ run UsersController }
 map('/games'){ run GamesController }
+map('/sessions'){ run SessionsController }
 map('/'){ run ApplicationController }

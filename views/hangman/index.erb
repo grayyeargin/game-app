@@ -1,28 +1,53 @@
 <!-- <div class="hangmanpage"> -->
-	<h1>Play some hangman</h1>
+	<div class="play_hangman">
+		<h1><span class="large_header">Guess the Word</span></h1>
 
-	<div class="board_container">
-		<h1 id="hangman_word"><%= @game.game_state %></h1>
+		<div class="hangman_word_container">
+			<h1 id="hangman_word"><%= @game.game_state %></h1>
+		</div>
+
+		<div class="info_container">
+			<div class="hangman_info">
+				<h3>Wrong Guess</h3>
+				<h5 id="bad_guesses"><%= @game.bad_guesses.split("").join(" ") %></h5>
+			</div>
+
+			<div class="hangman_info">
+				<h3>Good Guesses</h3>
+				<h5 id="good_guesses" ><%= @game.good_guesses.split("").join(" ") %></h5>
+			</div>
+
+			<div class="hangman_info">
+				<h3>Guess Count</h3>
+				<h5 id="guess_count" ><%= @game.badguess_count %></h5>
+			</div>
+		</div>
 	</div>
 
-	<div class="info_container">
-		<div class="hangman_info">
-			<h3>Wrong Guess</h3>
-			<h5 id="bad_guesses"><%= @game.bad_guesses.split("").join(" ") %></h5>
+
+
+
+<!-- Finished Game Action -->
+		<div class="finishedgame" id="hangman_winner" style="display:none;">
+			<h1>You Won. The word was <%= @game.word %>! Good for you</h1>
+			<button class="btn"><a href="/games">More Games</a></button>
+			<button class="btn" href="/games"><a href="/games">Play Again</a></button>
+		</div>
+		<div class="finishedgame" id="hangman_loser" style="display:none;">
+			<h1>You Lost. The word was <%= @game.word %>... Super sad.</h1>
+			<button class="btn"><a href="/games">More Games</a></button>
+			<button class="btn" href="/games/hangman/newgame"><a href="/games">Play Again</a></button>
 		</div>
 
-		<div class="hangman_info">
-			<h3>Good Guesses</h3>
-			<h5 id="good_guesses" ><%= @game.good_guesses.split("").join(" ") %></h5>
-		</div>
-
-		<div class="hangman_info">
-			<h3>Guess Count</h3>
-			<h5 id="guess_count" ><%= @game.badguess_count %></h5>
-		</div>
-	</div>
 
 	<div class="hidden"><%= @game.id %></div>
+
+<!-- 	dialog boxes -->
+	<div id="already_guessed_dialog" title="Terrible Hangman Infraction" style="display:none;">Hangman Tip #1: Maybe try guessing letters that have not already been guessed
+		<img class="dialog_img" src="/images/confused.png" alt="confused">
+	</div>
+
+	<div id="hangman_game_over" title="Terrible Hangman Infraction" style="display:none;">Game is over. Try making a new game maybe?</div>
 
 
 

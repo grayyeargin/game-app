@@ -11,19 +11,4 @@ class UsersController < ApplicationController
     redirect '/'
   end
 
-  post '/sessions' do
-    user = User.find_by(username: params[:username])
-    if user && user.password == params[:password]
-      session[:current_user] = user.id
-      redirect '/games'
-    else
-      redirect '/'
-    end
-  end
-
-  delete '/sessions' do
-    session[:current_user] = nil
-    redirect '/'
-  end
-
 end
